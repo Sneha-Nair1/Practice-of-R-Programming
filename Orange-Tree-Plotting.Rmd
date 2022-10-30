@@ -1,0 +1,42 @@
+---
+title: "Different Plottings of Dataset"
+author: "Sneha KJ"
+date: "30/10/2022"
+output: html_document
+---
+data(Orange)
+head(Orange)
+summary(Orange)
+plot(Orange$age)
+barplot(Orange$age)
+barplot(Orange$circumference)
+plot(Orange$age,Orange$circumference,xlab="Age",ylab="Circumference")
+plot(Orange$age,Orange$circumference,xlab="Age",ylab="Circumference",main="Orange-Tree-Growth")
+barplot(Orange$age,Orange$circumference,xlab="Age",ylab="Circumference",main="Orange-Tree-Growth")
+dotchart(Orange$circumference,xlab="Age",ylab="Circumference",main="Orange-Tree-Growth")
+hist(Orange$circumference,xlab="Age",ylab="Circumference",main="Orange-Tree-Growth")
+pie(Orange$circumference,xlab="Age",ylab="Circumference",main="Orange-Tree-Growth")
+boxplot(Orange$circumference,xlab="Age",ylab="Circumference",main="Orange-Tree-Growth")
+library(ggplot2)
+p <- ggplot(Orange, aes(x=age, y=circumference)) + 
+  geom_violin()
+p
+p + coord_flip()
+ggplot(Orange,aes(x=age, y=circumference)) + 
+  geom_violin(trim=FALSE)
+p + stat_summary(fun.y=mean, geom="point", shape=23, size=2)
+p + stat_summary(fun.y=median, geom="point", size=2, color="blue")
+p + geom_boxplot(width=0.01)
+p + geom_jitter(shape=16, position=position_jitter(0.2))
+p<-ggplot(Orange, aes(x=age, y=circumference, color=circumference)) +
+  geom_violin(trim=FALSE)
+p
+p+scale_color_manual(values=c("#999999","#E69F00","#56B4E9"))
+p + scale_color_grey() + theme_classic()
+ggplot(Orange,aes(x=age, y=circumference,fill=age)) +
+geom_violin()+
+coord_flip()
+hist(Orange$circumference, col = "green") 
+hist(Orange$circumference, col = "green", breaks = 25)
+hist(Orange$circumference, col = "green", breaks = 50) 
+boxplot(Orange$circumference, data=Orange, col = "green")
